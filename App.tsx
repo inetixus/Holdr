@@ -299,7 +299,7 @@ function AuthScreen({ mode, setMode, onBack, onSuccess }: { mode: 'signup' | 'si
         const res = await fetch(process.env.EXPO_PUBLIC_TURSO_DATABASE_URL!.replace('libsql://', 'https://'), {
           method: 'POST',
           headers: {
-            'Authorization': \`Bearer \${process.env.EXPO_PUBLIC_TURSO_AUTH_TOKEN}\`,
+            'Authorization': `Bearer ${process.env.EXPO_PUBLIC_TURSO_AUTH_TOKEN}`,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({

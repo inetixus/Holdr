@@ -59,13 +59,16 @@
     <p>Please wait while we redirect you back to the mobile application...</p>
   </div>
   <script>
-    // Extract tokens from hash fragment
+    // Extract parameters from hash fragment (#access_token=...&state=...)
     const hash = window.location.hash;
+    const hashParams = new URLSearchParams(hash.substring(1));
     
-    // Extract query parameters (state, error, etc.)
+    // Extract query parameters (state, error, etc. in case of error redirects)
     const urlParams = new URLSearchParams(window.location.search);
-    const state = urlParams.get('state');
-    const error = urlParams.get('error');
+    
+    // Read state and error from either hash or query parameters
+    const state = hashParams.get('state') || urlParams.get('state');
+    const error = hashParams.get('error') || urlParams.get('error');
     
     if (state) {
       // Decode target redirect URI (e.g., exp://...)

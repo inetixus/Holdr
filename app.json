@@ -5,7 +5,21 @@
     "version": "0.1.0",
     "orientation": "portrait",
     "userInterfaceStyle": "light",
-    "ios": { "supportsTablet": true },
-    "android": { "package": "com.holdr.app" }
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.holdr.app"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "3921b2cd-a3d5-4dfa-8877-c90710b7d7e6"
+      }
+    },
+    "owner": "holdr.1",
+    "plugins": [
+      "@react-native-google-signin/google-signin",
+      "expo-web-browser"
+    ]
   }
 }

@@ -2,6 +2,35 @@ import { createClient } from '@libsql/client/web';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { config } from './config';
 
+const memoryStorage = new Map<string, string>();
+
+const safeStorage = {
+  async getItem(key: string): Promise<string | null> {
+    try {
+      return await AsyncStorage.getItem(key);
+    } catch (e) {
+      console.warn('AsyncStorage.getItem failed, falling back to memory:', e);
+      return memoryStorage.get(key) || null;
+    }
+  },
+  async setItem(key: string, value: string): Promise<void> {
+    try {
+      await AsyncStorage.setItem(key, value);
+    } catch (e) {
+      console.warn('AsyncStorage.setItem failed, falling back to memory:', e);
+      memoryStorage.set(key, value);
+    }
+  },
+  async removeItem(key: string): Promise<void> {
+    try {
+      await AsyncStorage.removeItem(key);
+    } catch (e) {
+      console.warn('AsyncStorage.removeItem failed, falling back to memory:', e);
+      memoryStorage.delete(key);
+    }
+  }
+};
+
 export type ItemType = 'receipt' | 'coupon' | 'warranty';
 
 export type Item = {
@@ -119,7 +148,7 @@ export const DataStore = {
   async getUser(): Promise<User | null> {
     try {
       await initDb();
-      const userId = await AsyncStorage.getItem(USER_KEY);
+      const userId = await safeStorage.getItem(USER_KEY);
       if (!userId) return null;
       
       const res = await db.execute({
@@ -140,7 +169,7 @@ export const DataStore = {
   async saveUser(user: User): Promise<void> {
     try {
       await initDb();
-      await AsyncStorage.setItem(USER_KEY, user.id);
+      await safeStorage.setItem(USER_KEY, user.id);
       
       await db.execute({
         sql: 'INSERT INTO users (id, name, email) VALUES (?, ?, ?) ON CONFLICT(id) DO UPDATE SET name=excluded.name, email=excluded.email',
@@ -148,12 +177,13 @@ export const DataStore = {
       });
     } catch (e) {
       console.error('Failed to save user', e);
+      throw e; // throw so caller can see and handle it
     }
   },
 
   async removeUser(): Promise<void> {
     try {
-      await AsyncStorage.removeItem(USER_KEY);
+      await safeStorage.removeItem(USER_KEY);
     } catch (e) {
       console.error('Failed to remove user', e);
     }

@@ -46,6 +46,22 @@
       animation: spin 1s linear infinite;
       margin: 0 auto 20px;
     }
+    .btn {
+      display: none;
+      background: #0070BA;
+      color: white;
+      padding: 12px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 10px;
+      box-shadow: 0 4px 10px rgba(0, 112, 186, 0.2);
+      transition: background 0.2s;
+    }
+    .btn:active {
+      background: #005a96;
+    }
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -57,13 +73,14 @@
     <div class="spinner"></div>
     <h1>Connecting to Holdr</h1>
     <p>Please wait while we redirect you back to the mobile application...</p>
+    <a id="fallback-btn" class="btn" href="#">Return to App</a>
   </div>
   <script>
-    // Extract parameters from hash fragment (#access_token=...&state=...)
+    // Extract parameters from hash fragment
     const hash = window.location.hash;
     const hashParams = new URLSearchParams(hash.substring(1));
     
-    // Extract query parameters (state, error, etc. in case of error redirects)
+    // Extract query parameters
     const urlParams = new URLSearchParams(window.location.search);
     
     // Read state and error from either hash or query parameters
@@ -81,7 +98,12 @@
         redirectUrl += (redirectUrl.includes('?') ? '&' : '?') + 'error=' + encodeURIComponent(error);
       }
       
-      // Perform the redirect to the app custom protocol
+      // Configure manual return button in case automatic redirect is blocked
+      const btn = document.getElementById('fallback-btn');
+      btn.href = redirectUrl;
+      btn.style.display = 'inline-block';
+      
+      // Attempt automatic redirect
       window.location.replace(redirectUrl);
     } else {
       document.querySelector('.card').innerHTML = '<h1>Authentication Error</h1><p style="color: #fb6e59;">Missing redirect state. Please return to the Holdr app and try again.</p>';

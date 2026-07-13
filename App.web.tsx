@@ -14,8 +14,9 @@ export default function AppWeb() {
       <style dangerouslySetInnerHTML={{__html: `
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@700;900&display=swap');
         
+        #root { width: 100%; display: block; }
         * { box-sizing: border-box; }
-        body { margin: 0; background-color: #050505; color: #fff; }
+        body { margin: 0; background-color: #050505; color: #fff; width: 100%; overflow-x: hidden; }
         
         .nav {
           position: fixed;
@@ -53,6 +54,28 @@ export default function AppWeb() {
           text-align: center;
           padding: 140px 20px 60px;
           position: relative;
+          max-width: 1200px;
+          margin: 0 auto;
+          gap: 40px;
+        }
+        
+        @media (min-width: 900px) {
+          .hero {
+            flex-direction: row;
+            text-align: left;
+            justify-content: space-between;
+            padding: 160px 5% 60px;
+          }
+          .hero-content {
+            flex: 1;
+            padding-right: 60px;
+          }
+          .phone-mockup {
+            margin: 0 !important;
+            flex-shrink: 0;
+            transform: rotate(2deg);
+          }
+          h1 { font-size: clamp(50px, 6vw, 80px) !important; }
         }
         
         .blob {
@@ -96,6 +119,9 @@ export default function AppWeb() {
           color: #a0a0a0; line-height: 1.6;
           margin: 0 auto 40px; max-width: 600px;
         }
+        @media (min-width: 900px) {
+          .subtitle { margin: 0 0 40px; }
+        }
 
         .features {
           display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -135,7 +161,7 @@ export default function AppWeb() {
           width: 320px; height: 650px;
           background: #000; border: 12px solid #1a1a1a;
           border-radius: 40px;
-          margin: 60px auto 0;
+          margin: 0 auto;
           box-shadow: 0 30px 60px rgba(0,0,0,0.5), 0 0 100px rgba(217, 251, 90, 0.1);
           overflow: hidden;
           position: relative;

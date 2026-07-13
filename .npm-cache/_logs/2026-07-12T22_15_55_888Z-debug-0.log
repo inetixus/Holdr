@@ -1,0 +1,43 @@
+0 verbose cli C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\npm\bin\npm-cli.js
+1 info using npm@11.12.1
+2 info using node@v24.15.0
+3 silly config load:file:C:\Program Files\nodejs\node_modules\npm\npmrc
+4 silly config load:file:C:\Users\CodexSandboxOnline\.codex\.sandbox\cwd\da6ef6bd19de0a23\.npmrc
+5 silly config load:file:C:\Users\ineti\.npmrc
+6 silly config load:file:C:\Users\ineti\AppData\Roaming\npm\etc\npmrc
+7 verbose title npm exec create-expo-app@latest . --template blank-typescript --yes
+8 verbose argv "exec" "--cache" ".npm-cache" "--" "create-expo-app@latest" "." "--template" "blank-typescript" "--yes"
+9 verbose logfile logs-max:10 dir:C:\Users\CodexSandboxOnline\.codex\.sandbox\cwd\da6ef6bd19de0a23\.npm-cache\_logs\2026-07-12T22_15_55_888Z-
+10 verbose logfile C:\Users\CodexSandboxOnline\.codex\.sandbox\cwd\da6ef6bd19de0a23\.npm-cache\_logs\2026-07-12T22_15_55_888Z-debug-0.log
+11 silly logfile done cleaning log files
+12 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+13 http fetch GET 200 https://registry.npmjs.org/create-expo-app 474ms (cache miss)
+14 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+15 verbose Could not read global path C:\Users\ineti\AppData\Roaming\npm, ignoring
+16 silly packumentCache heap:4496293888 maxSize:1124073472 maxEntrySize:562036736
+17 warn exec The following package was not found and will be installed: create-expo-app@4.0.0
+18 silly idealTree buildDeps
+19 silly fetch manifest create-expo-app@4.0.0
+20 silly packumentCache full:https://registry.npmjs.org/create-expo-app cache-miss
+21 http fetch GET 200 https://registry.npmjs.org/create-expo-app 172ms (cache miss)
+22 silly packumentCache full:https://registry.npmjs.org/create-expo-app set size:undefined disposed:false
+23 silly placeDep ROOT create-expo-app@4.0.0 OK for:  want: 4.0.0
+24 silly reify moves {}
+25 silly audit bulk request { 'create-expo-app': [ '4.0.0' ] }
+26 http cache create-expo-app@https://registry.npmjs.org/create-expo-app/-/create-expo-app-4.0.0.tgz 1ms (cache hit)
+27 silly tarball no local data for create-expo-app@https://registry.npmjs.org/create-expo-app/-/create-expo-app-4.0.0.tgz. Extracting by manifest.
+28 http fetch GET 200 https://registry.npmjs.org/npm 860ms
+29 http fetch POST 200 https://registry.npmjs.org/-/npm/v1/security/advisories/bulk 354ms
+30 silly audit report {}
+31 http fetch GET 200 https://registry.npmjs.org/create-expo-app/-/create-expo-app-4.0.0.tgz 898ms (cache miss)
+32 verbose cwd C:\Users\CodexSandboxOnline\.codex\.sandbox\cwd\da6ef6bd19de0a23
+33 verbose os Windows_NT 10.0.26200
+34 verbose node v24.15.0
+35 verbose npm  v11.12.1
+36 notice
+36 notice New major version of npm available! 11.12.1 -> 12.0.1
+36 notice Changelog: https://github.com/npm/cli/releases/tag/v12.0.1
+36 notice To update run: npm install -g npm@12.0.1
+36 notice  { force: true, Symbol(proc-log.meta): true }
+37 verbose exit 1
+38 verbose code 1
